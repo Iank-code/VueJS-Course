@@ -9,19 +9,24 @@
   </head>
   <body>
     <div id="app" v-cloak>
-      <p>Hey {{ fullName() }}</p>
+      <p>Hey {{ fullName }}</p>
       <p><a :href="url" target="_blank">Google</a></p>
 
       <p v-html="raw_url"></p>
-      <p>{{age}}</p>
+      <p>{{typeof age}}</p>
       <hr />
 
       <label>First Name</label>
-      <input type="text" v-model="firstname" />
+      <input type="text" v-model.lazy.trim="firstname" />
+
+      <label>Middle Name</label>
+      <input type="text" @keyup.enter="updateMiddleName"/>
 
       <label>Last Name</label>
-      <input type="text" :value="lastname" @input="updateLastName"/>
+      <input type="text" :value="lastname" @input.prevent="updateLastName('Last name event triggered', $event)"/>
 
+      <label>Age</label>
+      <input type="number" v-model.number="age">
       <button type="button" @click="increment">Increment</button>
       <button type="button" @click="age--">Decrement</button>
     </div>

@@ -3,20 +3,30 @@ const vm = Vue.createApp({
     return {
       firstname: "John",
       lastname: "Doe",
+      middlename: "",
       url: "https://google.com",
       raw_url: '<a href="http://google.com" target="_blank">Google</a>',
       age: 20,
     };
   },
   methods: {
-    fullName() {
-      return `${this.firstname} ${this.lastname.toUpperCase()}`;
-    },
     increment() {
       this.age++;
     },
-    updateLastName(event) {
+    updateLastName(msg, event) {
+      console.log(msg);
       this.lastname = event.target.value;
+    },
+    updateMiddleName(event) {
+      this.middlename = event.target.value;
+    },
+  },
+  computed: {
+    fullName() {
+      console.log("full name method was called");
+      return `${this.firstname} ${
+        this.middlename
+      } ${this.lastname.toUpperCase()}`;
     },
   },
 }).mount("#app");
