@@ -5,6 +5,11 @@ const vm = Vue.createApp({
       lastname: "Doe",
     };
   },
+  methods: {
+    fullName() {
+      return `${this.firstname} ${this.lastname.toUpperCase()}`;
+    },
+  },
 }).mount("#app");
 
 setTimeout(() => {
